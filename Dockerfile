@@ -50,7 +50,7 @@ RUN apk add --no-cache php7-fpm
 # Nginx
 RUN apk add --no-cache nginx
 # 配置拷贝到镜像中
-COPY config/nginx/conf.d /etc/nginx/conf.d
+COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # 拷贝入口脚本
 COPY ./scripts/entrypoint.sh \
