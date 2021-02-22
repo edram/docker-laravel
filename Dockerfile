@@ -45,7 +45,8 @@ RUN set -eux; \
     adduser -u 82 -D -S -G www-data www-data
 
 RUN apk add --no-cache php7-fpm
-
+# 拷贝php-fpm配置
+COPY config/php-fpm/php-fpm.conf /etc/php7/php-fpm.conf
 
 # Nginx
 RUN apk add --no-cache nginx
