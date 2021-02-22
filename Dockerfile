@@ -12,7 +12,9 @@ RUN apk add --no-cache \
         #- base
         php7 \
         #- laravel/framework (官网列着的)
-        php7-bcmath php7-ctype php7-fileinfo php7-json php7-mbstring php7-openssl php7-tokenizer php7-xml   \
+        php7-bcmath php7-ctype php7-fileinfo php7-json php7-mbstring php7-openssl php7-tokenizer php7-xml \
+        #- laravel
+        php7-dom \
         #- phpunit (dev)
         php7-xmlwriter \
         #- composer(开发所需)
