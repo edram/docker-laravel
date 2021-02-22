@@ -14,7 +14,7 @@ RUN apk add --no-cache \
         #- laravel/framework (官网列着的)
         php7-bcmath php7-ctype php7-fileinfo php7-json php7-mbstring php7-openssl php7-tokenizer php7-xml \
         #- laravel
-        php7-dom \
+        php7-dom php7-iconv\
         #- phpunit (dev)
         php7-xmlwriter \
         #- composer(开发所需)
@@ -34,10 +34,11 @@ RUN apk add --no-cache \
 RUN apk add --no-cache curl
 RUN curl https://mirrors.aliyun.com/composer/composer.phar -s -S -o /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
-
-# 开发
 RUN  composer global require overtrue/package-builder
 ENV PATH=/root/.composer/vendor/bin:$PATH
+
+# 开发
+RUN apk add --no-cache git nodejs npm
 
 # FPM
 # FPM 所需用户和用户组 
