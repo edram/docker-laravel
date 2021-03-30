@@ -56,6 +56,11 @@ RUN apk add --no-cache nginx
 # 配置拷贝到镜像中
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 
+# 队列
+RUN apk add --no-cache supervisor && \
+    mkdir -p /var/log/supervisor
+COPY config/supervisor/supervisord.conf /etc/supervisord.conf
+
 # 拷贝入口脚本
 COPY ./scripts/entrypoint.sh \
     /usr/local/bin/
@@ -68,4 +73,4 @@ WORKDIR /var/www/html
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]
