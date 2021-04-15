@@ -78,6 +78,6 @@ ENTRYPOINT ["entrypoint.sh"]
 # 指定工作目录
 WORKDIR /var/www/html
 
-EXPOSE 80 20
+EXPOSE 80 22
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
