@@ -13,6 +13,9 @@ RUN curl https://mirrors.aliyun.com/composer/composer.phar -s -S -o /usr/local/b
     chmod +x /usr/local/bin/composer && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 ENV PATH=/root/.composer/vendor/bin:$PATH
 
+# 开发
+RUN apk add --no-cache git nodejs npm
+
 # Nginx
 RUN apk add --no-cache nginx
 # 配置拷贝到镜像中
@@ -37,13 +40,6 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
         sqlsrv pdo_sqlsrv \
     ;
 
-# openssh
-RUN apk add --no-cache openssh \
-  # 允许 root 登录
-  && sed -i "s/#PermitRootLogin.*/PermitRootLogin\ yes/" /etc/ssh/sshd_config \
-  && sed -i "s/AllowTcpForwarding.*/AllowTcpForwarding\ yes/" /etc/ssh/sshd_config \
-  && echo "root:123456" | chpasswd
-
 # 拷贝入口脚本
 COPY ./scripts/entrypoint.sh \
     /usr/local/bin/
@@ -54,6 +50,6 @@ ENTRYPOINT ["entrypoint.sh"]
 # 指定工作目录
 WORKDIR /var/www/html
 
-EXPOSE 80 22
+EXPOSE 80
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
