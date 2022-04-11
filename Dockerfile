@@ -4,8 +4,8 @@ FROM php:7.4-fpm-alpine3.14
 LABEL maintainer="edram"
 
 # 配置阿里云镜像
-RUN echo 'http://mirrors.aliyun.com/alpine/v3.13/main/' > /etc/apk/repositories \
-    && echo 'http://mirrors.aliyun.com/alpine/v3.13/community/' >> /etc/apk/repositories
+RUN echo 'http://mirrors.aliyun.com/alpine/v3.14/main/' > /etc/apk/repositories \
+    && echo 'http://mirrors.aliyun.com/alpine/v3.14/community/' >> /etc/apk/repositories
 
 # composer
 RUN apk add --no-cache curl
@@ -27,6 +27,9 @@ RUN apk add --no-cache supervisor && \
     mkdir -p /var/log/supervisor
 COPY config/supervisor/supervisord.conf /etc/supervisord.conf
 
+# openssh
+RUN apk add --no-cache openssh
+
 # php
 COPY ./scripts/install-php-extensions /usr/local/bin/
 
@@ -38,6 +41,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
         mysqli pdo_mysql \
         # sqlsrv
         sqlsrv pdo_sqlsrv \
+        # queue
+        pcntl \
     ;
 
 # 拷贝入口脚本
