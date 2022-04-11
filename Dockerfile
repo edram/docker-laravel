@@ -41,6 +41,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
         mysqli pdo_mysql \
         # sqlsrv
         sqlsrv pdo_sqlsrv \
+        # queue
+        pcntl \
     ;
 
 # 拷贝入口脚本
