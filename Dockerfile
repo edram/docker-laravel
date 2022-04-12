@@ -31,7 +31,7 @@ COPY config/supervisor/supervisord.conf /etc/supervisord.conf
 RUN apk add --no-cache openssh
 
 # php
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/1.5.8/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
     install-php-extensions \
