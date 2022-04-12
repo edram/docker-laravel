@@ -31,7 +31,7 @@ COPY config/supervisor/supervisord.conf /etc/supervisord.conf
 RUN apk add --no-cache openssh
 
 # php
-COPY ./scripts/install-php-extensions /usr/local/bin/
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
     install-php-extensions \
@@ -43,6 +43,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
         sqlsrv pdo_sqlsrv \
         # queue
         pcntl \
+        # redis
+        redis \ 
     ;
 
 # 拷贝入口脚本
