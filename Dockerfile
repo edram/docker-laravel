@@ -4,8 +4,8 @@ FROM php:7.4-fpm-alpine3.14
 LABEL maintainer="edram"
 
 # 配置阿里云镜像
-RUN echo 'http://mirrors.aliyun.com/alpine/v3.14/main/' > /etc/apk/repositories \
-    && echo 'http://mirrors.aliyun.com/alpine/v3.14/community/' >> /etc/apk/repositories
+# RUN echo 'http://mirrors.aliyun.com/alpine/v3.14/main/' > /etc/apk/repositories \
+#     && echo 'http://mirrors.aliyun.com/alpine/v3.14/community/' >> /etc/apk/repositories
 
 # composer
 RUN apk add --no-cache curl
