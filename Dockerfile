@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine3.14
+FROM php:7.4-fpm-alpine3.14
 
 # 镜像说明
 LABEL maintainer="edram"
