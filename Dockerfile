@@ -45,6 +45,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
         pcntl \
         # redis
         redis \ 
+        # swoole
+        swoole \
     ;
 
 # 拷贝入口脚本
