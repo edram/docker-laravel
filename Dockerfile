@@ -28,5 +28,5 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         # redis
         redis \ 
         # swoole
-        swoole-^4 \
+        swoole \
     ;
