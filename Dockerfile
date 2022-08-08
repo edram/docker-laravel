@@ -9,8 +9,16 @@ LABEL maintainer="edram"
 
 # composer
 RUN curl https://mirrors.aliyun.com/composer/composer.phar -s -S -o /usr/local/bin/composer && \
-    chmod +x /usr/local/bin/composer && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+    chmod +x /usr/local/bin/composer
 ENV PATH=/root/.composer/vendor/bin:$PATH
+
+# 安装额外依赖
+RUN apt-get update \
+    && apt-get -y install \
+        # composer install 需要解压
+        unzip\
+    # 清理镜像
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # php
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/1.5.8/install-php-extensions /usr/local/bin/
