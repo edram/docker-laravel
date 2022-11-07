@@ -19,6 +19,8 @@ RUN apt-get update \
         unzip \
         # 提供 cron 定时任务
         cron \
+        # supervisor
+        supervisor \
     # 清理镜像
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
