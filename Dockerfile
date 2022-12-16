@@ -35,6 +35,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         mysqli pdo_mysql \
         # sqlsrv
         sqlsrv pdo_sqlsrv \
+        # maatwebsite/excel
+        zip \
         # queue
         pcntl \
         # redis
