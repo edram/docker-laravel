@@ -1,4 +1,4 @@
-FROM edramkai/laravel:php-8.1
+FROM edramkai/laravel:php-7.3
 
 # 镜像说明
 LABEL maintainer="edram"
