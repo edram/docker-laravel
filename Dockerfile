@@ -1,4 +1,4 @@
-FROM php:8.2-bullseye
+FROM php:8.2.35-cli-bookworm
 
 # 镜像说明
 LABEL maintainer="edram"
@@ -25,7 +25,7 @@ RUN apt-get update \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # php
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/2.1.37/install-php-extensions /usr/local/bin/
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/download/2.12.3/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions \
@@ -33,8 +33,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         gd \
         # mysql
         mysqli pdo_mysql \
-        # sqlsrv
-        sqlsrv pdo_sqlsrv \
+        # sqlsrv 5.13 起要求 PHP 8.3，PHP 8.2 使用 5.12
+        sqlsrv-5.12.0 pdo_sqlsrv-5.12.0 \
         # maatwebsite/excel
         zip \
         # queue
